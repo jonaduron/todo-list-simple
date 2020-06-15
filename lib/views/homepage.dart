@@ -31,6 +31,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _editTodo() {
+    Todo todoToUpdate;
+
+    for(var i = 0; i <= todos.length; i++) {
+      if(i == selectedTodo) {
+        todoToUpdate = todos[i];
+      }
+    }
+
+    setState(() {
+       todoToUpdate.title = titleController.text;
+       todoToUpdate.description = descriptionController.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +78,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onLongPress: () {
                         selectedTodo = index;
+                        titleController.text = todos[index].title;
+                        descriptionController.text = todos[index].description;
                         Scaffold.of(context).showBottomSheet(
                           (context) => Container(
                             color: Colors.purple,
@@ -80,6 +97,11 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white
                                     ),
                                   ),
+                                  onTap: () {
+                                    _editTodo();
+                                    titleController.clear();
+                                    descriptionController.clear();
+                                  },
                                 ),
                                 ListTile(
                                   leading: Icon(
@@ -107,7 +129,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 30.0),
+              margin: EdgeInsets.only(bottom: 90.0),
               child: Column(
                 children: <Widget>[
                   TextField(
