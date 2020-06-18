@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/views/homepage.dart';
+import 'package:todo_list/screens/welcome/welcome_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.purple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: WelcomePage(),
     );
   }
 }
 
 
+      
